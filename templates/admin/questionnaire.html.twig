@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h2>Questionnaires :</h2>
+
+{% for questionnaire in questionnaires %}
+<div class="item-card">
+    <h2>{{ questionnaire.libelle}}</h2>
+    
+    <div class="row">
+        {% if questionnaire.applications is not empty %}
+        <div class="col-md-4">
+            <h4>Application(s) :</h4>
+                {% for application in questionnaire.applications %}
+                {{ application.libelle }} <br>
+                {% endfor %}
+        </div>
+        {% endif %}
+        {% if questionnaire.section is not empty %}
+        <div class="col-md-4">
+            <h4>Section :</h4>
+                {{ questionnaire.section.libelle }} <br>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h2>Section :</h2>
+
+{% for section in sections %}
+<div class="item-card">
+    <h2>{{ section.libelle}}</h2>
+    <p>{{ section.description }}</p>
+    
+    <div class="row">
+        {% if section.users is not empty %}
+        <div class="col-md-4">
+            <h4>Utilisateur(s) :</h4>
+            <ul>
+                {% for user in section.users %}
+                <li>{{ user.firstName }} {{ user.lastName }} </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if section.applications is not empty %}
+        <div class="col-md-4">
+            <h4>Application(s) :</h4>
+            <ul>
+                {% for application in section.applications %}
+                <li>{{ application.libelle }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if section.questionnaires is not empty %}
+        <div class="col-md-4">
+            <h4>Questionnaire(s) :</h4>
+            <ul>
+                {% for questionnaire in section.questionnaires %}
+                <li>{{ questionnaire.libelle }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,17 @@
+.container{
+    width: 1100px;
+}
+
+.row{
+    margin: auto;
+}
+
+h4{
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#breadcrumb{
+    min-height: 40px;
+}
+

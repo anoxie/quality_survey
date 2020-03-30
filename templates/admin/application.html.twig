@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h2>Applications :</h2>
+
+{% for application in applications %}
+<div class="item-card">
+    <h2>{{ application.libelle}}</h2>
+    <p>{{ application.description }}</p>
+    
+    <div class="row">
+        {% if application.users is not empty %}
+        <div class="col-md-4">
+            <h4>Utilisateur(s) :</h4>
+                {% for user in application.users %}
+                    {{ user.firstName }} {{ user.lastName }} <br>
+                {% endfor %}
+        </div>
+        {% endif %}
+        {% if application.sections is not empty %}
+        <div class="col-md-4">
+            <h4>Section :</h4>
+                {% for section in application.sections %}
+                    {{ section.libelle }} <br>
+                {% endfor %}
+        </div>
+        {% endif %}
+        {% if application.questionnaires is not empty %}
+        <div class="col-md-4">
+            <h4>Questionnaire(s) :</h4>
+                {% for questionnaire in application.questionnaires %}
+                    {{ questionnaire.libelle }} <br>
+                {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

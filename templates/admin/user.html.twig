@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h2>Utilisateurs</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr  class="text-center">
+        <th> Nom </th>
+        <th> Prénom </th>
+        <th> Email </th>
+        <th> Section </th>
+        <th> Applications </th>
+        <th> Opérations </th>
+    </tr>
+
+</thead>
+    <tbody>
+    {% for user in users %}
+    <tr>
+        <td> {{ user.firstName}}</td>
+        <td> {{ user.lastName }}</td>
+        <td> {{ user.email }}</td>
+        <td> 
+            {% for section in user.sections %}
+                {{ section.libelle }} <br>
+            {% endfor %}
+        </td>
+        <td> 
+            {% for application in user.applications %}
+                {{ application.libelle }} <br>
+            {% endfor %}
+        </td>
+        <td class="text-center">
+            <i class="fas fa-search"> </i>
+            <i class="far fa-edit"> </i>
+            <i class="far fa-trash-alt"> </i>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+
+{% endblock %}

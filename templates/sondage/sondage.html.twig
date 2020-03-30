@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if form is defined %}
+        {{ form(form, {'method': 'POST'}) }}
+    {% else %}
+        <h1>{{ message_title }}</h1>
+        <p>{{ message }}</p>
+    {% endif %}
+{% endblock %}

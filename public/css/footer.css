@@ -1,0 +1,16 @@
+#txt_footer{
+    display: block;
+    margin: auto;
+    text-align:center;
+    width: 100%;
+}
+
+.footer{
+    margin-top: 65px;
+    height: 30px;
+    background-color: white;
+}
+
+.content {
+    min-height: calc(100vh - 70px);
+}
