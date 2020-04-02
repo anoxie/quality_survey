@@ -1,46 +1,116 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h2>Section :</h2>
-
+<div class="card-item-neumo">
+    <a class="float-right action-button-neumo btn" href="{{ path('section_add') }}"><i class="fas fa-plus"></i></a>
+    <h2>Sections</h2> 
+</div>
+<br>
 {% for section in sections %}
-<div class="item-card">
+<div class="card-item-neumo" id="section_{{ section.id }}">
+    <a class="float-right action-button-neumo btn" href="javascript:delete_section('{{ section.id }}')"><i class="fas fa-trash-alt"></i></a>
+    <a class="float-right action-button-neumo btn" href="{{ path('section_edit', {'id_section': section.id }) }}"><i class="fas fa-edit"></i></a>
     <h2>{{ section.libelle}}</h2>
+    <hr>
     <p>{{ section.description }}</p>
-    
     <div class="row">
-        {% if section.users is not empty %}
-        <div class="col-md-4">
-            <h4>Utilisateur(s) :</h4>
-            <ul>
-                {% for user in section.users %}
-                <li>{{ user.firstName }} {{ user.lastName }} </li>
+        <div class="col-md-6">
+            <table class="table table-striped table-sm">
+                <tr>
+                    <thead class="thead-dark">
+                        <th class="text-center" colspan="2">
+                            Application
+                        </th>
+                    </thead>
+                    
+                </tr>
+                <tbody>
+                    <tr>
+                        {% for application in section.applications %}
+                    <td> {{ application.libelle }} </td>
+                </tr>
                 {% endfor %}
-            </ul>
+                    
+                </tbody>
+            </table>
         </div>
-        {% endif %}
-        {% if section.applications is not empty %}
-        <div class="col-md-4">
-            <h4>Application(s) :</h4>
-            <ul>
-                {% for application in section.applications %}
-                <li>{{ application.libelle }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endif %}
-        {% if section.questionnaires is not empty %}
-        <div class="col-md-4">
-            <h4>Questionnaire(s) :</h4>
-            <ul>
-                {% for questionnaire in section.questionnaires %}
-                <li>{{ questionnaire.libelle }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endif %}
     </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-striped table-sm">
+
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-center" colspan="2">
+                            Utilisateur
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="text-center"> Nom </th>
+                        <th class="text-center"> Prénom </th>
+                    </tr>                
+                </thead>
+
+                <tbody>
+                    <tr>
+                        {% for user in section.users %}
+                        <td> {{ user.lastName }} </td>
+                        <td> {{ user.firstName }} </td>
+                </tr>
+                {% endfor %}
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-6">
+            <table class="table table-striped table-sm">
+                <tr>
+                    <thead class="thead-dark">
+                        <th class="text-center" colspan="2">
+                            Questionnaire
+                        </th>
+                    </thead>
+                    
+                </tr>
+                <tbody>
+                    <tr>
+                        {% for questionnaire in section.questionnaires %}
+                    <td> {{ questionnaire.libelle }} </td>
+                </tr>
+                {% endfor %}
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
 {% endfor %}
 
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type='text/javascript'>
+    function delete_section(id_section){
+        let message = 'Attention supprimer une section, entraînera la suppression définitive de tout les questionnaires liés à cette section. Pour modifier les information d\'une section privilègier l\'option édition. Êtes-vous sûr de vouloir continuer'
+        if(confirm(message)){
+            $.ajax({
+                url: '{{ path('section_delete') }}',
+                type: "POST",
+                dataType:"json",
+                    data: {
+                        "idSection": id_section
+                    },
+                    async: true,
+                    success: function (data){
+                        $("div").remove('#section_'+ data.idSection);
+                    }
+            })
+
+        }
+    }
+</script>
 {% endblock %}

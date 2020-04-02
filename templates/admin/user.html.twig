@@ -1,10 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h2>Utilisateurs</h2>
+
+<div class="card-item-neumo">
+    <a class="float-right action-button-neumo btn" href><i class="fas fa-plus"></i></a>
+    <h2>Utilisateurs</h2> 
+</div>
+<br>
 
 <table class="table table-bordered table-hover">
-    <thead>
+    <thead class="thead-dark">
     <tr  class="text-center">
         <th> Nom </th>
         <th> Prénom </th>
@@ -18,8 +23,8 @@
     <tbody>
     {% for user in users %}
     <tr>
-        <td> {{ user.firstName}}</td>
         <td> {{ user.lastName }}</td>
+        <td> {{ user.firstName}}</td>
         <td> {{ user.email }}</td>
         <td> 
             {% for section in user.sections %}
@@ -32,9 +37,9 @@
             {% endfor %}
         </td>
         <td class="text-center">
-            <i class="fas fa-search"> </i>
-            <i class="far fa-edit"> </i>
-            <i class="far fa-trash-alt"> </i>
+            <i class="fas fa-search action-button-neumo"> </i>
+            <i class="far fa-edit action-button-neumo"> </i>
+            <i class="far fa-trash-alt action-button-neumo"> </i>
         </td>
     </tr>
     {% endfor %}

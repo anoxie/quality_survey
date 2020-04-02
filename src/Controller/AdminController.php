@@ -36,7 +36,7 @@ class AdminController extends AbstractController
     }
 
     /** 
-     * @Route("/admin/section/{id_section}", name="section")
+     * @Route("/admin/section", name="section")
      */
     public function section(Request $request, string $id_section = '', EntityManagerInterface $em)
     {

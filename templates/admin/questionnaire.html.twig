@@ -1,30 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h2>Questionnaires :</h2>
+
+
+<div class="card-item-neumo">
+    <a class="float-right action-button-neumo btn" href><i class="fas fa-plus"></i></a>
+    <h2>Questionnaires</h2> 
+</div>
+<br>
+
 
 {% for questionnaire in questionnaires %}
-<div class="item-card">
+<div class="card-item-neumo" id="{{ questionnaire.libelle }}">
+    <a class="float-right action-button-neumo btn" href="javascript:delete_application('{{ questionnaire.id }}')"><i class="fas fa-trash-alt"></i></a>
+    <a class="float-right action-button-neumo btn" href="{{ path('application_edit', {'id_application': questionnaire.id}) }}"><i class="fas fa-edit"></i></a>
     <h2>{{ questionnaire.libelle}}</h2>
+    <hr>
+    <p>{{ questionnaire.description}}</p>
     
     <div class="row">
-        {% if questionnaire.applications is not empty %}
-        <div class="col-md-4">
-            <h4>Application(s) :</h4>
-                {% for application in questionnaire.applications %}
-                {{ application.libelle }} <br>
-                {% endfor %}
+        <div class="col-md-5 button-black-flat">
+        <a class="text-center " href="#">
+        <div>
+            Prévisualiser questionnaire
         </div>
-        {% endif %}
-        {% if questionnaire.section is not empty %}
-        <div class="col-md-4">
-            <h4>Section :</h4>
-                {{ questionnaire.section.libelle }} <br>
+            
+        </a>
         </div>
-        {% endif %}
-
+        <div class="col-md-2"></div>
+        <div class="col-md-5 button-black-flat">
+            <a class="text-center " href="#">
+            <div>
+                Prévisualiser compte-rendu
+            </div>
+                
+            </a>
+            </div>
     </div>
 </div>
+
 {% endfor %}
 
 {% endblock %}

@@ -1,0 +1,31 @@
+.action-button-neumo {
+    box-shadow: -9px -9px 26px 0px rgba(255,255,255,0.83);
+    box-shadow: 4px 4px 11px 0px rgba(163,177,198,0.51);
+    background: #E0E5EC;
+    border:1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    margin-left: 15px;
+    padding:10px;
+  }
+  
+  /* On mouse-over, add a deeper shadow */
+  .action-button-neumo:hover {
+    box-shadow: 3px 3px 10px 0 rgba(0,0,0,0.3);
+  }
+
+  .button-black-flat{
+      background-color: #212529;
+      text-align: center;
+      height: 100%;
+      padding: 7px;
+  }
+
+  .button-black-flat a{
+    font-family: sans-serif;
+    font-size:1rem;
+    font-weight: bold;
+    line-height: 1.5;
+    vertical-align: center;
+    color: #fff;
+    text-decoration: none;
+}
