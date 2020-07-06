@@ -38,8 +38,12 @@
         </td>
         <td class="text-center">
             <i class="fas fa-search action-button-neumo"> </i>
-            <i class="far fa-edit action-button-neumo"> </i>
-            <i class="far fa-trash-alt action-button-neumo"> </i>
+            <a href="{{ path('user_edit', {'id_user': user.id }) }}">
+                <i class="far fa-edit action-button-neumo"> </i>
+            </a>
+            <a href="javascript:delete_application('{{ user.id }}')">
+                <i class="far fa-trash-alt action-button-neumo"> </i>
+            </a>
         </td>
     </tr>
     {% endfor %}
@@ -47,4 +51,24 @@
 </table>
 
 
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type='text/javascript'>
+    function delete_user(id_user){
+        $.ajax({
+            url: '{{ path('user_delete') }}',
+            type: "POST",
+            dataType:"json",
+                data: {
+                    "idUser": id_user
+                },
+                async: true,
+                success: function (data){
+                    $("div").remove('#application_'+ data.idUser);
+                }
+        })
+    }
+</script>
 {% endblock %}

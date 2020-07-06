@@ -3,8 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}{{ navbar_title }}{% endblock %}</title>
+        {% block icon %}<link rel="icon" type="image/x-icon" href="{{ asset('img/surveyIcon.ico') }}>"/> {% endblock %}
         {% block stylesheets %}
-            <link rel="stylesheet" type="text/css" href="{{ asset('vendor/Bootstrap/ccs/bootstrap.min.css') }}"/>
+            <link rel="stylesheet" type="text/css" href="{{ asset('vendor/Bootstrap/css/bootstrap.min.css') }}"/>
             <link rel="stylesheet" type="text/css" href="{{ asset('vendor/DataTables/datatables.min.css') }}"/>
             <link rel="stylesheet" type="text/css" href="{{ asset('vendor/fontawesome/css/all.min.css') }}"/>
             <link rel="stylesheet" type="text/css" href="{{ asset('css/navbar.css') }}"/>
@@ -33,7 +34,7 @@
         {% include 'includes/footer.html.twig' %}
             
             {% block javascripts %}
-        <script type="text/javascript" src="{{ asset('vendor/jQuery/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('vendor/jQuery/jquery-3.3.1.js') }}"></script>
         <script type="text/javascript" src="{{ asset('vendor/Bootstrap/js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('vendor/DataTables/datatables.min.js') }}"></script>
         <script type="text/javascript" src="DataTables/datatables.min.js"></script>

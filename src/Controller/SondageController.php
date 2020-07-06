@@ -33,7 +33,7 @@ class SondageController extends AbstractController
         /** @var Sondage $sondage */
         $sondage = $repository->findOneBy(['token' => $token]);
 
-        $form = $qm->createQuestions($sondage->getQuestionnaire()->getQuestions());
+        $form = $qm->createQuestions($sondage->getQuestionnaire()->getQuestionsSettings());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
